@@ -1,15 +1,18 @@
 package Task02;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Client {
+
    public static void main(String[] args) throws Exception {
 
       int port = 0;
       String serverName = " ";
-      Map<String, Item> mapItems = new HashMap<>();
 
       if (args.length == 0){
          port = 3000;
@@ -32,7 +35,17 @@ public class Client {
       sess.order();
       sess.purchase();
       sess.send();
-      
+
+      //read result
+      InputStream is = socket.getInputStream();
+      InputStreamReader isr = new InputStreamReader(is);
+      BufferedReader br = new BufferedReader(isr);
+
+        String result;
+
+         while((result = br.readLine())!=null){
+            System.out.println(result);
+         }
 
       //check if needed!!
       socket.close();

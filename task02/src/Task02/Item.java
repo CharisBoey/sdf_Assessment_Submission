@@ -49,8 +49,6 @@ public class Item {
         this.RATING = RATING;
     }
 
-    
-
     public double getBudget() {
         return budget;
     }

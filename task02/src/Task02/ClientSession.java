@@ -54,7 +54,7 @@ public class ClientSession {
                 continue;
             }
             //break;
-            System.out.printf(">INPUT: %s\n", result);
+            System.out.printf("%s\n", result);
 
             String[] terms = result.split(":");
 
@@ -64,7 +64,6 @@ public class ClientSession {
                     break;
 
                 case Constants.ITEM_COUNT:
-                    /* room.setName(terms[1]); */
                     break;
 
                 case Constants.BUDGET:
@@ -73,7 +72,6 @@ public class ClientSession {
                     break;
 
                 case Constants.PROD_LIST:
-                    /* start = terms[1]; */
                     break;
 
                 case Constants.PROD_START:
@@ -134,7 +132,6 @@ public class ClientSession {
         OutputStreamWriter ows = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(ows);
 
-        
         purchase();
         bw.write("request_id: "+request_id +"\n");
         bw.write("name: Charis Boey" +"\n");
@@ -149,14 +146,12 @@ public class ClientSession {
         bw.write("client_end\n");
         bw.flush();
         bw.close();
-    
-            
-        
     }
     
 
     private void saveItem(Item item){
         mapItems.put(item.getTITLE(),item);
     }  
+
 }
 
