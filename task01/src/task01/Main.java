@@ -133,9 +133,5 @@ public class Main{
             System.out.printf("Total lines in file: %d", lineCount+1);
             
         }
-
-
     }
-
-    
 }
