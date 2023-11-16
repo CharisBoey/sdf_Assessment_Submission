@@ -110,6 +110,7 @@ public class Main{
                 System.out.printf("Category: %s\n",appCategory);
                 determineHighest(apps);
                 determineLowest(apps);
+                
                 for(App app: apps){
                     lineCount ++;
                     if(app.getAppRating().contains("NaN")){
@@ -121,7 +122,7 @@ public class Main{
                 System.out.printf("Highest: %s, %s\n", highestApp.getAppName(), highestApp.getAppRating());
                 lowestApp = Lowest.pop();
                 System.out.printf("Lowest: %s, %s\n", lowestApp.getAppName(), lowestApp.getAppRating());
-                System.out.println("Average: " +aveRating(apps)+"\n");
+                System.out.println("Average: " +aveRating(apps));
                 System.out.printf("Count: %d\n",apps.size());
                 System.out.printf("Discarded: %d\n", discardedCount);
                 System.out.println("\n");
