@@ -131,8 +131,6 @@ public class Main{
             //add one back for heading
             System.out.printf("Total lines in file: %d", lineCount+1);
             
-            
-            //mush.txt
         }
 
 
