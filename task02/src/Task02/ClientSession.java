@@ -44,10 +44,9 @@ public class ClientSession {
         InputStream is = socket.getInputStream();
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
-        
-        while (true) {
+        String result;
+        while ((result = br.readLine())!= null) {
          
-            String result = br.readLine();
             result = result.trim();
             //System.out.println(">>> " + result);
             if (result.length()==0){
