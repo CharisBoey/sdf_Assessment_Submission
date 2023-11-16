@@ -16,6 +16,7 @@ public class Main{
         public static final int COL_APPRATING = 2;
         static Stack<App> Highest = new Stack<>();
         static Stack<App> Lowest = new Stack<>();
+        static int discardedCount = 0;
 
     
     private static Stack<App> determineHighest(List<App> apps) throws Exception {
@@ -53,18 +54,23 @@ public class Main{
         }
         return Lowest;  
     }
-/* 
+
     public static double aveRating (List<App> apps){
+        double validsize = 0;
+        double sum = 0;
         for(App app : apps){
-
+            if(app.getAppRating().contains("NaN")){
+                continue;
+            } else {
+            validsize++;
+            sum += Double.parseDouble(app.getAppRating());
+            }
         }
+        return (sum/validsize);
 
-    } */
+    }
 
     public static void main(String[] args) throws Exception {
-        int count;
-        int discardedCount = 0;
-        List<String> rank = new ArrayList<>();
         int lineCount =0;
         App highestApp;
         App lowestApp;
@@ -106,19 +112,18 @@ public class Main{
                 determineLowest(apps);
                 for(App app: apps){
                     lineCount ++;
-                    //System.out.printf("Name %s, Rating %s\n",app.getAppName(), app.getAppRating());
-                    /* if (Highest.size() == 0){
+                    if(app.getAppRating().contains("NaN")){
+                        discardedCount ++;
                         continue;
-                    }   
-                    if (Lowest.size() ==0){
-                        continue;
-                    } */
+                    }  
                 }
                 highestApp = Highest.pop();
                 System.out.printf("Highest: %s, %s\n", highestApp.getAppName(), highestApp.getAppRating());
                 lowestApp = Lowest.pop();
                 System.out.printf("Lowest: %s, %s\n", lowestApp.getAppName(), lowestApp.getAppRating());
+                System.out.println("Average: " +aveRating(apps)+"\n");
                 System.out.printf("Count: %d\n",apps.size());
+                System.out.printf("Discarded: %d\n", discardedCount);
                 System.out.println("\n");
 
             }

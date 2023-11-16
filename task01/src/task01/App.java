@@ -9,7 +9,7 @@ public class App {
     private String appCategory;
     //should be double
     private String appRating;
-    private Double appRate;
+    private String appRate;
     //private boolean nullRating = false;
     //private int discarded;
 
@@ -57,9 +57,6 @@ public class App {
     public void setDiscarded(int discarded) {
         this.discarded = discarded;
     } */
-
-    public void remove(App app) {
-    }
 
     /* public boolean isNullRating() {
         return nullRating;
