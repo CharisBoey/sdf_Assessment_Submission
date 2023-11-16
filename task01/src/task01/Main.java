@@ -66,6 +66,7 @@ public class Main{
             sum += Double.parseDouble(app.getAppRating());
             }
         }
+        discardedCount = (int) (apps.size() - validsize);
         return (sum/validsize);
 
     }
@@ -114,7 +115,6 @@ public class Main{
                 for(App app: apps){
                     lineCount ++;
                     if(app.getAppRating().contains("NaN")){
-                        discardedCount ++;
                         continue;
                     }  
                 }
