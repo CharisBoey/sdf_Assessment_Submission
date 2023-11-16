@@ -21,6 +21,10 @@ public class ClientSession {
     public Stack<Item> RankItem = new Stack<>();
     Item item = new Item();
     List<Integer> itemsPurchased = new ArrayList<>();
+    String request_id; 
+    double purchaseBudget;
+    double initialBudget;
+    
     
     public Map<String, Item> getMapItems() {
         return mapItems;
@@ -56,8 +60,7 @@ public class ClientSession {
 
             switch (terms[0]) {
                 case Constants.REQUEST_ID:
-                    /* room = new Room(terms[1]);
-                    saveRoom(room); */
+                    request_id = terms[1];
                     break;
 
                 case Constants.ITEM_COUNT:
@@ -66,6 +69,7 @@ public class ClientSession {
 
                 case Constants.BUDGET:
                     item.setBudget(Double.parseDouble(terms[1].trim()));
+                    initialBudget = Double.parseDouble(terms[1].trim());
                     break;
 
                 case Constants.PROD_LIST:
@@ -84,7 +88,7 @@ public class ClientSession {
                     break;
 
                 case Constants.PRICE:
-                    item.setPRICE(terms[1]);
+                    item.setPRICE(Double.parseDouble(terms[1].trim()));
                     break;
 
                 case Constants.RATING:
@@ -106,7 +110,7 @@ public class ClientSession {
             Item item = mapItems.get(title);
             for (int i =0; i<mapItems.size(); i++){
                 if(item.getRATING() < mapItems.get(i).getRATING()){
-                    if (Double.parseDouble(item.getPRICE()) < Double.parseDouble(mapItems.get(i).getPRICE())){
+                    if (item.getPRICE() < mapItems.get(i).getPRICE()){
                         RankItem.push(item);
                     }
                 }
@@ -115,10 +119,11 @@ public class ClientSession {
     }
 
     public void purchase(){
-        double purchaseBudget = item.getBudget();
-        if (purchaseBudget > RankItem.peek().getBudget()){
+        purchaseBudget = item.getBudget();
+        if (purchaseBudget > RankItem.peek().getPRICE()){
             Item popItem = RankItem.pop();
             itemsPurchased.add(popItem.getPROD_ID());
+            purchaseBudget = purchaseBudget - popItem.getBudget();
         } else {
             System.out.println("END");
         }
@@ -128,17 +133,25 @@ public class ClientSession {
         OutputStream os = socket.getOutputStream();
         OutputStreamWriter ows = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(ows);
-        boolean stop = false;
 
-        while (!stop) {
-            purchase();
-            for(int ItemID : itemsPurchased){
-                bw.write(ItemID +",");
-            }
-            bw.flush();
+        
+        purchase();
+        bw.write("request_id: "+request_id +"\n");
+        bw.write("name: Charis Boey" +"\n");
+        bw.write("email: charis_bsy@outlook.com" +"\n");
+        bw.write("items: ");
+        for(int ItemID : itemsPurchased){
+            bw.write(ItemID +",");
         }
+        bw.write("\n");
+        bw.write("spent: "+(initialBudget- purchaseBudget)+"\n");
+        bw.write("remaining: "+purchaseBudget+"\n");
+        bw.write("client_end\n");
+        bw.flush();
+        bw.close();
+    
             
-        stop = true;
+        
     }
     
 

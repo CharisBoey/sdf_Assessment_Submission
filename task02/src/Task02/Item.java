@@ -3,14 +3,14 @@ package Task02;
 public class Item {
     private int PROD_ID;
 	private String TITLE;
-	private String PRICE;
+	private double PRICE;
 	private double RATING;
     private double budget;
 
     public Item(String PROD_ID, String TITLE, String PRICE, String RATING){
         this.PROD_ID = Integer.parseInt(PROD_ID);
         this.TITLE = TITLE;
-        this.PRICE = PRICE;
+        this.PRICE = Double.parseDouble(PRICE);
         this.RATING = Double.parseDouble(RATING);
     }
     
@@ -33,11 +33,11 @@ public class Item {
         this.TITLE = TITLE;
     }
 
-    public String getPRICE() {
+    public Double getPRICE() {
         return PRICE;
     }
 
-    public void setPRICE(String PRICE) {
+    public void setPRICE(double PRICE) {
         this.PRICE = PRICE;
     }
 
