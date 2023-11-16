@@ -9,6 +9,7 @@ public class App {
     private String appCategory;
     //should be double
     private String appRating;
+    private Double appRate;
     //private boolean nullRating = false;
     //private int discarded;
 
@@ -22,6 +23,12 @@ public class App {
         //Double.parseDouble(appRating);
         //this.discarded = discarded;
     }
+    /* public App(String appName, String appCategory, Double appRate){
+        this.appName = appName;
+        this.appCategory = appCategory;
+        this.appRating = appRating;
+    } */
+        
 
     
 
@@ -50,9 +57,6 @@ public class App {
     public void setDiscarded(int discarded) {
         this.discarded = discarded;
     } */
-
-
-
 
     public void remove(App app) {
     }
@@ -84,5 +88,28 @@ public class App {
         }
     } */
 
+   /*  public App determineHighest(List<App> App){
+        Stack<App> detHighest = new Stack<>();
+        App theHighest;
+        for (int i = 0; i<App.size(); i++){
+            if(detHighest.size() <=0 ){
+                detHighest.push(App.get(i));
+            } else {
+                double ratingCurr = Double.parseDouble(App.get(i).getAppRating());
+                double ratingHighest = Double.parseDouble(detHighest.peek().getAppRating());
+                if (ratingCurr > ratingHighest){
+                    detHighest.push(App.get(i));
+                } else {
+                    continue;
+                }
+            }
+            if (det)
+
+        }
+        theHighest = detHighest.pop();
+        return theHighest;
+        
+    }
+ */
     
 }
