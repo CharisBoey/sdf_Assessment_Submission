@@ -99,7 +99,7 @@ public class Main{
             //filter
             .filter(line -> line.length>0)
             //String[] -> App(String AppName, String AppCategory, String AppRating)
-            //pointer 2 - App category to lowercase *****
+            //pointer 2 - App category to uppercase *****
             .map(fields -> new App(fields[COL_APPNAME], fields[COL_APPCATEGORY].toUpperCase(), fields[COL_APPRATING]))
             //groupingBy 
             .collect(Collectors.groupingBy(application -> application.getAppCategory()));
